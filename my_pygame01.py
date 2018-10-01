@@ -1,4 +1,5 @@
 import pygame
+from pygame.locals import *
 import time 
 from random import randint
 
@@ -18,13 +19,13 @@ class Hero:
     
    
   
+pygame.init()
 
 def main():
     width = 510
     height = 475
     # blue_color = (97, 159, 182)
 
-    pygame.init()
     screen = pygame.display.set_mode((width, height))
     pygame.display.set_caption('My Game')
     clock = pygame.time.Clock()
@@ -33,7 +34,7 @@ def main():
     hero_x = 225
     hero_y = 225
     # change_dir_countdown = 120
-   
+    hero = Hero(hero_x, hero_y)
     
 
     # Game initialization
@@ -49,15 +50,15 @@ def main():
             
 
             # # Event handlings
-            if event.type == pygame.KEYDOWN:
-                if event.key == KEY_DOWN:
-                    hero.y += 3
-                elif event.key == KEY_UP:
-                    hero.y -= 3
-                elif event.key == KEY_LEFT:
-                    hero.x -= 3
-                elif event.key == KEY_RIGHT:
-                    hero.x += 3
+            if event.type == KEYDOWN:
+                if event.key == K_DOWN:
+                    hero.hero_y += 3
+                elif event.key == K_UP:
+                    hero.hero_y -= 3
+                elif event.key == K_LEFT:
+                    hero.hero_x -= 3
+                elif event.key == K_RIGHT:
+                    hero.hero_x += 3
             
 
             if event.type == pygame.QUIT:
@@ -103,8 +104,8 @@ def main():
         pygame.display.update()
         clock.tick(60)
         screen.blit(background_image, (0,0))
-        screen.blit(hero_1, (hero_x, hero_y))
-        screen.blit(monster, (monster_x, monster_y))
+        screen.blit(hero_1, (hero.hero_x, hero.hero_y))
+        screen.blit(monster, (monster.monster_x, monster.monster_y))
         
 
         
